@@ -1,0 +1,27 @@
+/* font title  */
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+/* font content  */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+
+@import "tailwindcss";
+
+:root {
+  --color-primary: #696cf7;
+  /* Light colors */
+  --color-bg: #f5f4f9; /* nền */
+  --color-surface: #ffffff; /* card / sidebar */
+  --color-text: #000000; /* chữ chính */
+
+  /* Dark colors */
+  --color-bg-dark: #000000; /* nền */
+  --color-surface-dark: #21242d; /* card / sidebar */
+  --color-text-dark: #ffffff; /* chữ chính */
+
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+}

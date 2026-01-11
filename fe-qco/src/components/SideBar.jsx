@@ -20,13 +20,13 @@ function SideBar({ collapsed, onToggle }) {
       className={`
         h-full flex flex-col py-4
         bg-(--color-surface) text-(--color-text)
-        dark:bg-(--color-surface-dark) dark:text-(--color-text-dark)
+        dark:bg-(--color-surface-dark) dark:text-(--color-text-dark) px-2.5
       `}
     >
       {/* Logo */}
       <div
-        className={`mb-10 px-2.5 text-[2.5rem] title transition-all duration-300 ${
-          collapsed ? "text-center" : "text-left"
+        className={`mb-10 text-[2.5rem] title text-center transition-all duration-300 ${
+          collapsed ? "text-center" : "text-center"
         }`}
       >
         <span>{collapsed ? "Q" : "QCO"}</span>
@@ -90,7 +90,8 @@ function SideBar({ collapsed, onToggle }) {
   );
 }
 
-const MenuItem = ({ to, icon: Icon, label, collapsed }) => {
+const MenuItem = ({ to, icon, label, collapsed }) => {
+  const Icon = icon;
   return (
     <NavLink
       to={to}

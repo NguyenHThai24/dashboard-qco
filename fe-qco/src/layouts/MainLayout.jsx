@@ -6,10 +6,13 @@ function MainLayout() {
   const [collapsed, setCollapsed] = useState(false);
 
   return (
-    <div className="flex h-screen overflow-hidden">
+    <div
+      className="flex h-screen overflow-hidden bg-(--color-surface)
+        dark:bg-(--color-surface-dark)"
+    >
       {/* Sidebar */}
       <aside
-        className={`h-screen p-4 transition-all duration-300 ${
+        className={`h-screen transition-all duration-300 ${
           collapsed ? "w-20" : "w-56"
         }`}
       >

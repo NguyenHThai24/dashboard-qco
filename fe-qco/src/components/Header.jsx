@@ -28,11 +28,11 @@ function Header() {
   const leans = floor ? floorData[floor] : [];
 
   return (
-    <section className="flex justify-between p-4 mb-4 rounded bg-[var(--color-surface)]">
+    <section className="flex justify-between p-3 mb-3 rounded bg-[var(--color-surface)]">
       {/* Clock */}
       <div className="flex flex-col justify-center">
         {/* Time */}
-        <div className="text-2xl font-semibold tabular-nums">
+        <div className="text-base font-semibold tabular-nums">
           {time.toLocaleTimeString("vi-VN")}
         </div>
 
@@ -53,14 +53,14 @@ function Header() {
             type="date"
             value={fromDate}
             onChange={(e) => setFromDate(e.target.value)}
-            className="w-48 px-3 py-2 rounded border outline-none"
+            className="w-48 px-3 py-2 rounded border-b outline-none"
           />
           <LiaExchangeAltSolid />
           <input
             type="date"
             value={toDate}
             onChange={(e) => setToDate(e.target.value)}
-            className="w-48 px-3 py-2 rounded border outline-none"
+            className="w-48 px-3 py-2 rounded border-b outline-none"
           />
         </div>
         <div className="flex items-center gap-3">
@@ -70,7 +70,7 @@ function Header() {
               setFloor(e.target.value);
               setLean("");
             }}
-            className="w-48 px-3 py-2 rounded border outline-none"
+            className="w-48 px-3 py-2 rounded border-b outline-none"
           >
             <option value="">Chọn Tầng</option>
             {Object.keys(floorData).map((f) => (
@@ -84,7 +84,7 @@ function Header() {
             value={lean}
             disabled={!floor}
             onChange={(e) => setLean(e.target.value)}
-            className="w-48 px-3 py-2 rounded border outline-none disabled:opacity-50"
+            className="w-48 px-3 py-2 rounded border-b outline-none disabled:opacity-50"
           >
             <option value="">Chọn Chuyền</option>
             {leans.map((l) => (

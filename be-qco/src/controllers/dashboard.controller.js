@@ -2,6 +2,8 @@ import {
   getTotalCalendar,
   getCalendarTrend,
   getFloorsAndLeans,
+  getTotalCompleteCalendar,
+  getCompleteCalendarTrend,
 } from "../models/dashboard.model.js";
 
 // get floor lean
@@ -42,6 +44,39 @@ export const getDashboardData = async (req, res) => {
 
     const total = await getTotalCalendar(filters);
     const chart = await getCalendarTrend(filters);
+
+    res.json({
+      total,
+      chart,
+    });
+  } catch (error) {
+    console.error("Dashboard error:", error);
+    res.status(500).json({
+      message: "Lỗi server",
+    });
+  }
+};
+
+// get total complete
+export const getDashboarCompletedData = async (req, res) => {
+  try {
+    // đảm bảo req.body luôn là object
+    const {
+      startDate = null,
+      endDate = null,
+      floor = null,
+      lean = null,
+    } = req.body || {};
+
+    const filters = {
+      startDate: startDate || null,
+      endDate: endDate || null,
+      floor: floor || null,
+      lean: lean || null,
+    };
+
+    const total = await getTotalCompleteCalendar(filters);
+    const chart = await getCompleteCalendarTrend(filters);
 
     res.json({
       total,

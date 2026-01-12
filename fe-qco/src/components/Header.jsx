@@ -7,9 +7,32 @@ function Header({ onFilterChange }) {
   const [floorData, setFloorData] = useState({});
   const [floor, setFloor] = useState("");
   const [lean, setLean] = useState("");
-  const [fromDate, setFromDate] = useState("");
-  const [toDate, setToDate] = useState("");
+
   const [time, setTime] = useState(new Date());
+
+  // Lấy ngày đầu và ngày cuối của tháng hiện tại
+  const formatDate = (date) => {
+    const yyyy = date.getFullYear();
+    const mm = String(date.getMonth() + 1).padStart(2, "0");
+    const dd = String(date.getDate()).padStart(2, "0");
+    return `${yyyy}-${mm}-${dd}`;
+  };
+
+  const getDefaultDates = () => {
+    const now = new Date();
+    const firstDay = new Date(now.getFullYear(), now.getMonth(), 1);
+    const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+
+    return {
+      from: formatDate(firstDay),
+      to: formatDate(lastDay),
+    };
+  };
+
+  const defaultDates = getDefaultDates();
+
+  const [fromDate, setFromDate] = useState(defaultDates.from);
+  const [toDate, setToDate] = useState(defaultDates.to);
 
   /* ===== clock ===== */
   useEffect(() => {

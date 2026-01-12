@@ -9,3 +9,8 @@ export const getFloorsAndLeans = () => {
 export const getTotalAPI = (data) => {
   return axiosClient.post("/dashboard/get-total", data);
 };
+
+// card total complete
+export const getTotalCompleteAPI = (data) => {
+  return axiosClient.post("/dashboard/get-total-complete", data);
+};

@@ -36,7 +36,7 @@ const DoubleBarChart = () => {
       {/* Chart */}
       <div className="h-[90%]">
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={data} barGap={6}>
+          <BarChart data={data} barGap={2}>
             {/* Grid ngang */}
             <CartesianGrid
               vertical={false}

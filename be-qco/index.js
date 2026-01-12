@@ -2,6 +2,9 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 
+import authRoute from "./src/routes/auth.route.js";
+import dashboardRoute from "./src/routes/dashboard.route.js";
+
 dotenv.config();
 
 const app = express();
@@ -17,8 +20,8 @@ app.use(
 
 app.use(express.json());
 
-import authRoute from "./src/routes/auth.route.js";
 app.use("/api/auth", authRoute);
+app.use("/api/dashboard", dashboardRoute);
 
 const PORT = process.env.PORT || 2402;
 app.listen(PORT, () => {

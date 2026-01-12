@@ -1,5 +1,25 @@
 import { poolPromise, sql } from "../db/sqlserver.js";
 
+// get floor lean
+export const getFloorsAndLeans = async () => {
+  try {
+    const pool = await poolPromise;
+
+    const result = await pool.request().query(`
+        SELECT DISTINCT
+          [floor],
+          [lean]
+        FROM [EIP].[dbo].[DT_Calendars]
+        WHERE [floor] IS NOT NULL
+          AND [lean] IS NOT NULL
+      `);
+
+    return result.recordset;
+  } catch (error) {
+    throw error;
+  }
+};
+
 // 🔹 Lấy tổng số lệnh
 export const getTotalCalendar = async ({ startDate, endDate, floor, lean }) => {
   const pool = await poolPromise;

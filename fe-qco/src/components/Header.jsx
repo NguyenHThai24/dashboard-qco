@@ -1,3 +1,4 @@
+// Header.jsx
 import { useEffect, useState } from "react";
 import { LiaExchangeAltSolid } from "react-icons/lia";
 import { GrLinkNext } from "react-icons/gr";
@@ -9,12 +10,11 @@ const floorData = {
   4: ["4.1"],
 };
 
-function Header() {
+function Header({ onFilterChange }) {
   const [floor, setFloor] = useState("");
   const [lean, setLean] = useState("");
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
-
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {
@@ -25,18 +25,24 @@ function Header() {
     return () => clearInterval(timer);
   }, []);
 
+  const handleApplyFilter = () => {
+    const filters = {
+      startDate: fromDate,
+      endDate: toDate,
+      floor: floor,
+      lean: lean,
+    };
+    onFilterChange(filters);
+  };
+
   const leans = floor ? floorData[floor] : [];
 
   return (
     <section className="mb-3 flex justify-between rounded bg-(--color-surface) p-3 text-(--color-text) dark:bg-(--color-surface-dark) dark:text-(--color-text-dark)">
-      {/* Clock */}
       <div className="flex flex-col justify-center">
-        {/* Time */}
         <div className="text-base font-bold tabular-nums">
           {time.toLocaleTimeString("vi-VN")}
         </div>
-
-        {/* Date */}
         <div className="text-base">
           {time.toLocaleDateString("vi-VN", {
             weekday: "long",
@@ -46,8 +52,8 @@ function Header() {
           })}
         </div>
       </div>
+
       <div className="flex items-center gap-8">
-        {/* Filters */}
         <div className="flex flex-wrap items-center gap-3">
           <input
             type="date"
@@ -63,6 +69,7 @@ function Header() {
             className="w-48 rounded border-b px-3 py-2 outline-none"
           />
         </div>
+
         <div className="flex items-center gap-3">
           <select
             value={floor}
@@ -94,6 +101,13 @@ function Header() {
             ))}
           </select>
         </div>
+
+        <button
+          onClick={handleApplyFilter}
+          className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+        >
+          Áp dụng
+        </button>
       </div>
     </section>
   );

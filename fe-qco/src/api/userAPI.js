@@ -1,14 +1,4 @@
-import axios from "axios";
-
-const API_URL = "http://localhost:2402/api";
-
-/* instance axios */
-const axiosClient = axios.create({
-  baseURL: API_URL,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
+import axiosClient from "../configs/baseURL";
 
 /* login */
 export const loginAPI = (data) => {

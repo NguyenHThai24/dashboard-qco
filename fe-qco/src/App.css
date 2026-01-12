@@ -10,3 +10,7 @@
   font-family: "Permanent Marker", cursive;
   font-weight: bold;
 }
+
+svg:focus {
+  outline: none;
+}

@@ -24,7 +24,13 @@ function Dashboard() {
         <div className="flex flex-1 flex-col gap-2">
           <div className="flex h-36 w-full items-center gap-2">
             <div className="h-full w-full">
-              <CartTotal title="Total1" filters={filters} />
+              <CartTotal title="Tổng lệnh" filters={filters} />
+            </div>
+            <div className="h-full w-full">
+              <CartTotal title="Total2" filters={filters} />
+            </div>
+            <div className="h-full w-full">
+              <CartTotal title="Total2" filters={filters} />
             </div>
             <div className="h-full w-full">
               <CartTotal title="Total2" filters={filters} />

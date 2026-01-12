@@ -1,49 +1,58 @@
-// Header.jsx
 import { useEffect, useState } from "react";
 import { LiaExchangeAltSolid } from "react-icons/lia";
 import { GrLinkNext } from "react-icons/gr";
-
-const floorData = {
-  1: ["1.1", "1.2", "1.3"],
-  2: ["2.1", "2.2"],
-  3: ["3.1", "3.2", "3.3"],
-  4: ["4.1"],
-};
+import { getFloorsAndLeans } from "../api/dashboardAPI";
 
 function Header({ onFilterChange }) {
+  const [floorData, setFloorData] = useState({});
   const [floor, setFloor] = useState("");
   const [lean, setLean] = useState("");
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
   const [time, setTime] = useState(new Date());
 
+  /* ===== clock ===== */
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTime(new Date());
-    }, 1000);
-
+    const timer = setInterval(() => setTime(new Date()), 1000);
     return () => clearInterval(timer);
   }, []);
 
+  /* ===== fetch floor & lean ===== */
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await getFloorsAndLeans();
+        const grouped = res.data.data.reduce((acc, item) => {
+          if (!acc[item.floor]) acc[item.floor] = [];
+          acc[item.floor].push(item.lean);
+          return acc;
+        }, {});
+        setFloorData(grouped);
+      } catch (err) {
+        console.error("Fetch floor & lean failed", err);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const handleApplyFilter = () => {
-    const filters = {
+    onFilterChange({
       startDate: fromDate,
       endDate: toDate,
-      floor: floor,
-      lean: lean,
-    };
-    onFilterChange(filters);
+      floor,
+      lean,
+    });
   };
 
-  const leans = floor ? floorData[floor] : [];
+  const leans = floor ? floorData[floor] || [] : [];
 
   return (
-    <section className="mb-3 flex justify-between rounded bg-(--color-surface) p-3 text-(--color-text) dark:bg-(--color-surface-dark) dark:text-(--color-text-dark)">
-      <div className="flex flex-col justify-center">
-        <div className="text-base font-bold tabular-nums">
-          {time.toLocaleTimeString("vi-VN")}
-        </div>
-        <div className="text-base">
+    <section className="mb-3 flex justify-between rounded bg-(--color-surface) p-3">
+      {/* Time */}
+      <div>
+        <div className="font-bold">{time.toLocaleTimeString("vi-VN")}</div>
+        <div>
           {time.toLocaleDateString("vi-VN", {
             weekday: "long",
             day: "2-digit",
@@ -53,59 +62,61 @@ function Header({ onFilterChange }) {
         </div>
       </div>
 
+      {/* Filters */}
       <div className="flex items-center gap-8">
-        <div className="flex flex-wrap items-center gap-3">
+        {/* Date */}
+        <div className="flex items-center gap-3">
           <input
+            className="w-50 rounded-2xl border-b px-4 py-1.5"
             type="date"
             value={fromDate}
             onChange={(e) => setFromDate(e.target.value)}
-            className="w-48 rounded border-b px-3 py-2 outline-none"
           />
           <LiaExchangeAltSolid />
           <input
+            className="w-50 rounded-2xl border-b px-4 py-1.5"
             type="date"
             value={toDate}
             onChange={(e) => setToDate(e.target.value)}
-            className="w-48 rounded border-b px-3 py-2 outline-none"
           />
         </div>
 
+        {/* Floor & Lean */}
         <div className="flex items-center gap-3">
           <select
+            className="w-44 rounded-2xl border-b px-4 py-1.5"
             value={floor}
             onChange={(e) => {
               setFloor(e.target.value);
               setLean("");
             }}
-            className="w-48 rounded border-b px-3 py-2 outline-none"
           >
             <option value="">Chọn Tầng</option>
             {Object.keys(floorData).map((f) => (
               <option key={f} value={f}>
-                Floor {f}
+                {f}
               </option>
             ))}
           </select>
+
           <GrLinkNext />
+
           <select
+            className="w-44 rounded-2xl border-b px-4 py-1.5"
             value={lean}
             disabled={!floor}
             onChange={(e) => setLean(e.target.value)}
-            className="w-48 rounded border-b px-3 py-2 outline-none disabled:opacity-50"
           >
             <option value="">Chọn Chuyền</option>
             {leans.map((l) => (
               <option key={l} value={l}>
-                Lean {l}
+                {l}
               </option>
             ))}
           </select>
         </div>
 
-        <button
-          onClick={handleApplyFilter}
-          className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
-        >
+        <button onClick={handleApplyFilter} className="btn cursor-pointer">
           Áp dụng
         </button>
       </div>

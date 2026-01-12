@@ -1,7 +1,6 @@
-// Dashboard.jsx
 import { useState } from "react";
 import Header from "../components/Header";
-import CartTotal from "../components/CardTotal";
+import CartItem from "../components/CartItem";
 import DoubleBarChart from "../components/DoubleBarChart";
 
 function Dashboard() {
@@ -24,16 +23,16 @@ function Dashboard() {
         <div className="flex flex-1 flex-col gap-2">
           <div className="flex h-36 w-full items-center gap-2">
             <div className="h-full w-full">
-              <CartTotal title="Tổng lệnh" filters={filters} />
+              <CartItem title="Tổng lệnh" filters={filters} color="#6366f1" />
             </div>
             <div className="h-full w-full">
-              <CartTotal title="Total2" filters={filters} />
+              <CartItem title="Total2" filters={filters} />
             </div>
             <div className="h-full w-full">
-              <CartTotal title="Total2" filters={filters} />
+              <CartItem title="Total2" filters={filters} />
             </div>
             <div className="h-full w-full">
-              <CartTotal title="Total2" filters={filters} />
+              <CartItem title="Total2" filters={filters} />
             </div>
           </div>
 

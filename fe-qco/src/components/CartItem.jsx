@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { AreaChart, Area, ResponsiveContainer } from "recharts";
 import { getTotalAPI } from "../api/dashboardAPI";
 
-function CartTotal({ title, filters }) {
+function CartItem({ title, filters, color = "#2A27F5" }) {
   const [total, setTotal] = useState(0);
   const [chartData, setChartData] = useState([]);
   const [diffPercent, setDiffPercent] = useState(null);
@@ -69,15 +69,15 @@ function CartTotal({ title, filters }) {
             <AreaChart data={chartData}>
               <defs>
                 <linearGradient id="colorLine" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#6366f1" stopOpacity={0.6} />
-                  <stop offset="100%" stopColor="#6366f1" stopOpacity={0.1} />
+                  <stop offset="0%" stopColor={color} stopOpacity={0.6} />
+                  <stop offset="100%" stopColor={color} stopOpacity={0.1} />
                 </linearGradient>
               </defs>
 
               <Area
                 type="monotone"
                 dataKey="value"
-                stroke="#6366f1"
+                stroke={color}
                 strokeWidth={1.8}
                 fill="url(#colorLine)"
                 dot={false}
@@ -91,4 +91,4 @@ function CartTotal({ title, filters }) {
   );
 }
 
-export default CartTotal;
+export default CartItem;

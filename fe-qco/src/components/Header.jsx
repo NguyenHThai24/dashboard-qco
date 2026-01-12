@@ -67,14 +67,14 @@ function Header({ onFilterChange }) {
         {/* Date */}
         <div className="flex items-center gap-3">
           <input
-            className="w-50 rounded-2xl border-b px-4 py-1.5"
+            className="w-50 rounded-2xl border-b px-4 py-1.5 outline-0"
             type="date"
             value={fromDate}
             onChange={(e) => setFromDate(e.target.value)}
           />
           <LiaExchangeAltSolid />
           <input
-            className="w-50 rounded-2xl border-b px-4 py-1.5"
+            className="w-50 rounded-2xl border-b px-4 py-1.5 outline-0"
             type="date"
             value={toDate}
             onChange={(e) => setToDate(e.target.value)}
@@ -84,7 +84,7 @@ function Header({ onFilterChange }) {
         {/* Floor & Lean */}
         <div className="flex items-center gap-3">
           <select
-            className="w-44 rounded-2xl border-b px-4 py-1.5"
+            className="w-44 rounded-2xl border-b px-4 py-1.5 outline-0"
             value={floor}
             onChange={(e) => {
               setFloor(e.target.value);
@@ -102,7 +102,7 @@ function Header({ onFilterChange }) {
           <GrLinkNext />
 
           <select
-            className="w-44 rounded-2xl border-b px-4 py-1.5"
+            className="w-44 rounded-2xl border-b px-4 py-1.5 outline-0"
             value={lean}
             disabled={!floor}
             onChange={(e) => setLean(e.target.value)}

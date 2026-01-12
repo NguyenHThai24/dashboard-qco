@@ -48,7 +48,7 @@ function Header({ onFilterChange }) {
   const leans = floor ? floorData[floor] || [] : [];
 
   return (
-    <section className="mb-3 flex justify-between rounded bg-(--color-surface) p-3">
+    <section className="mb-3 flex justify-between rounded bg-(--color-surface) p-3 dark:bg-(--color-surface-dark)">
       {/* Time */}
       <div>
         <div className="font-bold">{time.toLocaleTimeString("vi-VN")}</div>
@@ -91,9 +91,15 @@ function Header({ onFilterChange }) {
               setLean("");
             }}
           >
-            <option value="">Chọn Tầng</option>
+            <option value="" className="dark:bg-(--color-surface-dark)">
+              Chọn Tầng
+            </option>
             {Object.keys(floorData).map((f) => (
-              <option key={f} value={f}>
+              <option
+                key={f}
+                value={f}
+                className="dark:bg-(--color-surface-dark)"
+              >
                 {f}
               </option>
             ))}
@@ -107,9 +113,15 @@ function Header({ onFilterChange }) {
             disabled={!floor}
             onChange={(e) => setLean(e.target.value)}
           >
-            <option value="">Chọn Chuyền</option>
+            <option value="" className="dark:bg-(--color-surface-dark)">
+              Chọn Chuyền
+            </option>
             {leans.map((l) => (
-              <option key={l} value={l}>
+              <option
+                key={l}
+                value={l}
+                className="dark:bg-(--color-surface-dark)"
+              >
                 {l}
               </option>
             ))}

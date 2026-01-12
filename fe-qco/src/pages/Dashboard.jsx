@@ -26,13 +26,13 @@ function Dashboard() {
               <CartItem title="Tổng lệnh" filters={filters} color="#6366f1" />
             </div>
             <div className="h-full w-full">
-              <CartItem title="Total2" filters={filters} />
+              <CartItem title="Hoàn thành" filters={filters} />
             </div>
             <div className="h-full w-full">
-              <CartItem title="Total2" filters={filters} />
+              <CartItem title="Bắt đầu" filters={filters} />
             </div>
             <div className="h-full w-full">
-              <CartItem title="Total2" filters={filters} />
+              <CartItem title="Sẵn sàng" filters={filters} />
             </div>
           </div>
 

@@ -70,7 +70,7 @@ function SideBar({ collapsed, onToggle }) {
       <div className="flex flex-col gap-3 px-2">
         <div
           onClick={toggleTheme}
-          className={`flex cursor-pointer items-center rounded-full px-3 py-2 transition ${collapsed ? "justify-center" : "justify-between"} hover:bg-[#9c9df3]`}
+          className={`flex cursor-pointer items-center rounded-full border-b px-3 py-2 transition ${collapsed ? "justify-center" : "justify-between"} hover:bg-[#9c9df3]`}
         >
           {theme === "dark" ? <LuSun /> : <LuMoon />}
           {!collapsed && <span>{theme === "dark" ? "Light" : "Dark"}</span>}
@@ -79,9 +79,11 @@ function SideBar({ collapsed, onToggle }) {
         {/* Collapse button */}
         <button
           onClick={onToggle}
-          className="flex items-center justify-center rounded-full p-2 transition hover:bg-[#9c9df3]"
+          className="mx-auto rounded-full border bg-(--color-primary) p-2 hover:bg-[#9c9df3]"
         >
-          {collapsed ? <LuChevronRight /> : <LuChevronLeft />}
+          <span className="">
+            {collapsed ? <LuChevronRight /> : <LuChevronLeft />}
+          </span>
         </button>
       </div>
     </aside>

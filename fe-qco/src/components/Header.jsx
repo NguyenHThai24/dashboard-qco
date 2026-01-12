@@ -28,16 +28,16 @@ function Header() {
   const leans = floor ? floorData[floor] : [];
 
   return (
-    <section className="flex justify-between p-3 mb-3 rounded bg-(--color-surface) text-(--color-text) dark:bg-(--color-surface-dark) dark:text-(--color-text-dark)">
+    <section className="mb-3 flex justify-between rounded bg-(--color-surface) p-3 text-(--color-text) dark:bg-(--color-surface-dark) dark:text-(--color-text-dark)">
       {/* Clock */}
       <div className="flex flex-col justify-center">
         {/* Time */}
-        <div className="text-base font-semibold tabular-nums">
+        <div className="text-base font-bold tabular-nums">
           {time.toLocaleTimeString("vi-VN")}
         </div>
 
         {/* Date */}
-        <div className="text-sm opacity-70">
+        <div className="text-base">
           {time.toLocaleDateString("vi-VN", {
             weekday: "long",
             day: "2-digit",
@@ -53,14 +53,14 @@ function Header() {
             type="date"
             value={fromDate}
             onChange={(e) => setFromDate(e.target.value)}
-            className="w-48 px-3 py-2 rounded border-b outline-none"
+            className="w-48 rounded border-b px-3 py-2 outline-none"
           />
           <LiaExchangeAltSolid />
           <input
             type="date"
             value={toDate}
             onChange={(e) => setToDate(e.target.value)}
-            className="w-48 px-3 py-2 rounded border-b outline-none"
+            className="w-48 rounded border-b px-3 py-2 outline-none"
           />
         </div>
         <div className="flex items-center gap-3">
@@ -70,7 +70,7 @@ function Header() {
               setFloor(e.target.value);
               setLean("");
             }}
-            className="w-48 px-3 py-2 rounded border-b outline-none"
+            className="w-48 rounded border-b px-3 py-2 outline-none"
           >
             <option value="">Chọn Tầng</option>
             {Object.keys(floorData).map((f) => (
@@ -84,7 +84,7 @@ function Header() {
             value={lean}
             disabled={!floor}
             onChange={(e) => setLean(e.target.value)}
-            className="w-48 px-3 py-2 rounded border-b outline-none disabled:opacity-50"
+            className="w-48 rounded border-b px-3 py-2 outline-none disabled:opacity-50"
           >
             <option value="">Chọn Chuyền</option>
             {leans.map((l) => (

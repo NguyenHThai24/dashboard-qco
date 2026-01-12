@@ -1,3 +1,5 @@
+import logoIMG from "../../public/change-logo.png";
+
 import {
   LuLayoutDashboard,
   LuArrowLeftRight,
@@ -17,23 +19,21 @@ function SideBar({ collapsed, onToggle }) {
 
   return (
     <aside
-      className={`
-        h-full flex flex-col py-4
-        bg-(--color-surface) text-(--color-text)
-        dark:bg-(--color-surface-dark) dark:text-(--color-text-dark) px-2.5
-      `}
+      className={`flex h-full flex-col bg-(--color-surface) px-2.5 py-4 text-(--color-text) dark:bg-(--color-surface-dark) dark:text-(--color-text-dark)`}
     >
       {/* Logo */}
       <div
-        className={`mb-10 text-[2.5rem] title text-center transition-all duration-300 ${
-          collapsed ? "text-center" : "text-center"
-        }`}
+        className={`title mb-10 flex items-center justify-center gap-2 text-center text-[2.5rem] transition-all duration-300`}
       >
-        <span>{collapsed ? "Q" : "QCO"}</span>
+        <div className="rounded bg-(--color-primary) p-1.5">
+          <img src={logoIMG} alt="logo" className="w-8" />
+        </div>
+
+        {!collapsed && <span>QCO</span>}
       </div>
 
       {/* Menu */}
-      <nav className="flex-1 flex flex-col gap-4">
+      <nav className="flex flex-1 flex-col gap-4">
         <MenuItem
           to="/"
           icon={LuLayoutDashboard}
@@ -70,9 +70,7 @@ function SideBar({ collapsed, onToggle }) {
       <div className="flex flex-col gap-3 px-2">
         <div
           onClick={toggleTheme}
-          className={`flex items-center cursor-pointer rounded-full px-3 py-2 transition
-  ${collapsed ? "justify-center" : "justify-between"}
-  hover:bg-[#9c9df3]`}
+          className={`flex cursor-pointer items-center rounded-full px-3 py-2 transition ${collapsed ? "justify-center" : "justify-between"} hover:bg-[#9c9df3]`}
         >
           {theme === "dark" ? <LuSun /> : <LuMoon />}
           {!collapsed && <span>{theme === "dark" ? "Light" : "Dark"}</span>}
@@ -81,7 +79,7 @@ function SideBar({ collapsed, onToggle }) {
         {/* Collapse button */}
         <button
           onClick={onToggle}
-          className="flex items-center justify-center rounded-full p-2 hover:bg-[#9c9df3] transition"
+          className="flex items-center justify-center rounded-full p-2 transition hover:bg-[#9c9df3]"
         >
           {collapsed ? <LuChevronRight /> : <LuChevronLeft />}
         </button>
@@ -96,12 +94,7 @@ const MenuItem = ({ to, icon, label, collapsed }) => {
     <NavLink
       to={to}
       className={({ isActive }) =>
-        `
-        flex items-center gap-3 px-3 py-1.5 rounded-full transition
-        hover:bg-[#9c9df3]
-        ${collapsed ? "justify-center" : ""}
-        ${isActive ? "btn font-semibold" : ""}
-      `
+        `flex items-center gap-3 rounded-full px-3 py-1.5 transition hover:bg-[#9c9df3] ${collapsed ? "justify-center" : ""} ${isActive ? "btn font-semibold" : ""} `
       }
     >
       <Icon size={20} />

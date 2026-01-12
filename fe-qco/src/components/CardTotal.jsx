@@ -13,21 +13,21 @@ const data = [
 
 function CartTotal({ title }) {
   return (
-    <div className="rounded-lg h-full shadow-md bg-(--color-surface)">
+    <div className="h-full rounded-lg bg-(--color-surface) shadow-md dark:bg-(--color-surface-dark)">
       <div className="flex h-full gap-1">
         {/* Left: Content */}
-        <div className="flex flex-col justify-center gap-2 w-full  p-4">
-          <span className="text-sm text-gray-500">{title}</span>
+        <div className="flex w-full flex-col justify-center gap-2 p-4">
+          <span className="text-sm">{title}</span>
 
           <span className="text-2xl font-bold">$857,850</span>
 
-          <span className="text-sm text-green-500">
-            ↑ 35.3% <span className="text-gray-400">last month</span>
+          <span className="text-sm">
+            ↑ 35.3% <span className="">last month</span>
           </span>
         </div>
 
         {/* Right: Chart */}
-        <div className="w-full h-full">
+        <div className="h-full w-full">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={data}>
               <defs>

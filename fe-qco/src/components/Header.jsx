@@ -28,7 +28,7 @@ function Header() {
   const leans = floor ? floorData[floor] : [];
 
   return (
-    <section className="flex justify-between p-3 mb-3 rounded bg-[var(--color-surface)]">
+    <section className="flex justify-between p-3 mb-3 rounded bg-(--color-surface) text-(--color-text) dark:bg-(--color-surface-dark) dark:text-(--color-text-dark)">
       {/* Clock */}
       <div className="flex flex-col justify-center">
         {/* Time */}

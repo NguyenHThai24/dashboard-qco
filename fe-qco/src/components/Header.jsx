@@ -48,7 +48,7 @@ function Header({ onFilterChange }) {
   const leans = floor ? floorData[floor] || [] : [];
 
   return (
-    <section className="mb-3 flex justify-between rounded bg-(--color-surface) p-3 dark:bg-(--color-surface-dark)">
+    <section className="mb-2 flex justify-between rounded bg-(--color-surface) p-3 dark:bg-(--color-surface-dark)">
       {/* Time */}
       <div>
         <div className="font-bold">{time.toLocaleTimeString("vi-VN")}</div>

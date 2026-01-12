@@ -13,7 +13,7 @@ const data = [
 
 function CartTotal({ title }) {
   return (
-    <div className="h-full rounded-lg bg-(--color-surface) shadow-md dark:bg-(--color-surface-dark)">
+    <div className="h-full rounded bg-(--color-surface) shadow-md dark:bg-(--color-surface-dark)">
       <div className="flex h-full gap-1">
         {/* Left: Content */}
         <div className="flex w-full flex-col justify-center gap-2 p-4">

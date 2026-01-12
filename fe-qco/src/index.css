@@ -26,3 +26,19 @@
   font-optical-sizing: auto;
   font-weight: 500;
 }
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: none; /* hide scrollbar */
+}
+
+/* IE, Edge cũ */
+* {
+  -ms-overflow-style: none;
+}

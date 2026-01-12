@@ -60,9 +60,11 @@ export const getCalendarTrend = async ({ startDate, endDate, floor, lean }) => {
         FROM EIP.dbo.DT_Calendars
         WHERE
           (@startDate IS NULL OR date >= @startDate)
-          AND (@endDate IS NULL OR date <= @endDate)
-          AND (@floor IS NULL OR floor = @floor)
-          AND (@lean IS NULL OR lean = @lean)
+          AND (floor = @floor OR @floor IS NULL OR @floor = '')
+AND (lean = @lean OR @lean IS NULL OR @lean = '')
+AND (date >= @startDate OR @startDate IS NULL)
+AND (date <= @endDate OR @endDate IS NULL)
+
         ORDER BY date DESC
       ) t
       GROUP BY CAST(date AS DATE)

@@ -8,6 +8,7 @@ import dashboardRoute from "./src/routes/dashboard.route.js";
 dotenv.config();
 
 const app = express();
+app.use(express.json());
 
 /*  CORS */
 app.use(
@@ -17,8 +18,6 @@ app.use(
     credentials: true,
   })
 );
-
-app.use(express.json());
 
 app.use("/api/auth", authRoute);
 app.use("/api/dashboard", dashboardRoute);

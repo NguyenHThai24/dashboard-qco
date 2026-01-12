@@ -25,13 +25,19 @@ export const fetchFloorsAndLeans = async (req, res) => {
 // get total
 export const getDashboardData = async (req, res) => {
   try {
-    const { startDate, endDate, floor, lean } = req.body;
+    // đảm bảo req.body luôn là object
+    const {
+      startDate = null,
+      endDate = null,
+      floor = null,
+      lean = null,
+    } = req.body || {};
 
     const filters = {
-      startDate,
-      endDate,
-      floor,
-      lean,
+      startDate: startDate || null,
+      endDate: endDate || null,
+      floor: floor || null,
+      lean: lean || null,
     };
 
     const total = await getTotalCalendar(filters);

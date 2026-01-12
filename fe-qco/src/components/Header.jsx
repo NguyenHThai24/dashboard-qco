@@ -38,10 +38,10 @@ function Header({ onFilterChange }) {
 
   const handleApplyFilter = () => {
     onFilterChange({
-      startDate: fromDate,
-      endDate: toDate,
-      floor,
-      lean,
+      startDate: fromDate || null,
+      endDate: toDate || null,
+      floor: floor || null,
+      lean: lean || null,
     });
   };
 

@@ -18,43 +18,21 @@ function CartTotal({ title, filters }) {
   }, [filters]);
 
   const fetchDashboard = async () => {
-    if (
-      !filters.startDate &&
-      !filters.endDate &&
-      !filters.floor &&
-      !filters.lean
-    ) {
-      return;
-    }
-
     try {
       const res = await getTotalAPI(filters);
 
       setTotal(res.data.total);
 
-      const areaData = res.data.chart.map((item) => ({
-        value: item.total,
-      }));
-
+      const areaData = res.data.chart.map((item) => ({ value: item.total }));
       setChartData(areaData);
 
-      //  So sánh 2 giá trị cuối
+      // Tính diffPercent
       if (areaData.length >= 2) {
         const last = areaData[areaData.length - 1].value;
         const prev = areaData[areaData.length - 2].value;
 
-        if (prev !== 0) {
-          const diff = ((last - prev) / prev) * 100;
-          setDiffPercent(diff);
-        } else {
-          setDiffPercent(0);
-        }
-
-        if (last > prev) setTrend("up");
-        else if (last < prev) setTrend("down");
-        else setTrend("equal");
+        setDiffPercent(prev !== 0 ? ((last - prev) / prev) * 100 : 0);
       } else {
-        setTrend(null);
         setDiffPercent(null);
       }
     } catch (error) {

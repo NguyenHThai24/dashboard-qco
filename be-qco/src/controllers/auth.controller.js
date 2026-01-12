@@ -1,3 +1,4 @@
+import jwt from "jsonwebtoken";
 import { findUserBySignId } from "../models/user.model.js";
 
 export const login = async (req, res) => {
@@ -18,15 +19,28 @@ export const login = async (req, res) => {
       });
     }
 
+    // Nếu DB đang lưu password thường → so sánh trực tiếp
+
     if (user.User_Password !== password) {
       return res.status(401).json({
         message: "Sai mật khẩu",
       });
     }
 
-    // Thành công
+    // TẠO TOKEN
+    const token = jwt.sign(
+      {
+        userSignId: user.User_Sign_ID,
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: process.env.JWT_EXPIRES_IN || "1d",
+      }
+    );
+
     return res.json({
       message: "Đăng nhập thành công",
+      token,
       user: {
         userSignId: user.User_Sign_ID,
       },
